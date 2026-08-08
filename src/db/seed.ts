@@ -1,3 +1,4 @@
+import { and, eq, isNotNull, ne } from "drizzle-orm";
 import { reset, seed } from "drizzle-seed";
 import type { ItemModifier } from "#/types/item";
 import { itemCategorySchema, itemRaritySchema } from "#/types/item";
@@ -53,7 +54,8 @@ async function main() {
 				}),
 				weight: f.number({ minValue: 0.1, maxValue: 25, precision: 10 }),
 				value: f.number({ minValue: 1, maxValue: 5000, precision: 1 }),
-				durability: f.int({ minValue: 0, maxValue: 100 }),
+				durabilityMax: f.int({ minValue: 50, maxValue: 200 }),
+				durabilityCurrent: f.int({ minValue: 0, maxValue: 200 }),
 				modifiers: f.weightedRandom(
 					modifierSets.map((modifiers) => ({
 						weight: 1 / modifierSets.length,
@@ -63,6 +65,54 @@ async function main() {
 			},
 		},
 	}));
+
+	// Consumables have no durability; indestructible gear uses null for both columns.
+	await db
+		.update(schema.items)
+		.set({ durabilityCurrent: null, durabilityMax: null })
+		.where(eq(schema.items.category, "consumable"));
+
+	const gearItems = await db
+		.select()
+		.from(schema.items)
+		.where(
+			and(
+				ne(schema.items.category, "consumable"),
+				isNotNull(schema.items.durabilityCurrent),
+				isNotNull(schema.items.durabilityMax),
+			),
+		);
+
+	for (const item of gearItems) {
+		await db
+			.update(schema.items)
+			.set({
+				durabilityCurrent: Math.min(
+					item.durabilityCurrent as number,
+					item.durabilityMax as number,
+				),
+			})
+			.where(eq(schema.items.id, item.id));
+	}
+
+	// Demo: one legendary gear piece is indestructible.
+	const [legendaryGear] = await db
+		.select()
+		.from(schema.items)
+		.where(
+			and(
+				eq(schema.items.rarity, "legendary"),
+				ne(schema.items.category, "consumable"),
+			),
+		)
+		.limit(1);
+
+	if (legendaryGear) {
+		await db
+			.update(schema.items)
+			.set({ durabilityCurrent: null, durabilityMax: null })
+			.where(eq(schema.items.id, legendaryGear.id));
+	}
 
 	console.log("Seeded 15 inventory items.");
 }

@@ -18,6 +18,16 @@ export const itemModifierSchema = z.object({
 });
 export type ItemModifier = z.infer<typeof itemModifierSchema>;
 
+export const itemDurabilitySchema = z
+	.object({
+		current: z.number().int().nonnegative(),
+		max: z.number().int().positive(),
+	})
+	.refine((durability) => durability.current <= durability.max, {
+		message: "current durability cannot exceed max",
+	});
+export type ItemDurability = z.infer<typeof itemDurabilitySchema>;
+
 /** Shared domain shape for an inventory item (used by app code). */
 export const inventoryItemSchema = z.object({
 	id: z.string().min(1),
@@ -26,7 +36,8 @@ export const inventoryItemSchema = z.object({
 	rarity: itemRaritySchema,
 	weight: z.number().nonnegative(),
 	value: z.number().nonnegative(),
-	durability: z.number().min(0).max(100),
+	/** `null` for indestructible items and categories without durability (e.g. consumables). */
+	durability: itemDurabilitySchema.nullable(),
 	modifiers: z.array(itemModifierSchema),
 });
 export type InventoryItem = z.infer<typeof inventoryItemSchema>;

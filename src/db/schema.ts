@@ -21,7 +21,8 @@ export const items = sqliteTable("items", {
 	rarity: text("rarity", { enum: itemRarities }).notNull(),
 	weight: real("weight").notNull(),
 	value: real("value").notNull(),
-	durability: integer("durability").notNull(),
+	durabilityCurrent: integer("durability_current"),
+	durabilityMax: integer("durability_max"),
 	modifiers: text("modifiers", { mode: "json" })
 		.$type<ItemModifier[]>()
 		.notNull(),

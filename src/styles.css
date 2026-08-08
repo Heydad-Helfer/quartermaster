@@ -6,6 +6,7 @@
 
 @import "./components/layout/app-layout.css";
 @import "./components/layout/header/header.css";
+@import "./components/inventory-table/cells/durability.css";
 
 /* Dark-first: `.dark` forces dark, `.light` forces light. light-dark() follows color-scheme. */
 @custom-variant dark (&:where(.dark, .dark *));
@@ -89,10 +90,10 @@ body {
   --durability-low: light-dark(oklch(0.55 0.2 25), oklch(0.7 0.18 25));
 
   /* Rarity accents — high luminosity on dark surfaces */
-  --rarity-common: light-dark(oklch(0.55 0.01 255), oklch(0.78 0.01 255));
-  --rarity-rare: light-dark(oklch(0.5 0.16 250), oklch(0.72 0.14 250));
-  --rarity-epic: light-dark(oklch(0.48 0.2 300), oklch(0.72 0.16 300));
-  --rarity-legendary: light-dark(oklch(0.62 0.14 75), oklch(0.82 0.14 85));
+  --rarity-common: light-dark(oklch(0.55 0.02 255), oklch(0.78 0.03 255));
+  --rarity-rare: light-dark(oklch(0.48 0.22 250), oklch(0.72 0.24 250));
+  --rarity-epic: light-dark(oklch(0.5 0.28 300), oklch(0.72 0.28 300));
+  --rarity-legendary: light-dark(oklch(0.6 0.22 72), oklch(0.8 0.24 78));
 
 
   /* Inner-glow border helper (1px edge definition) */

@@ -8,7 +8,7 @@ export type IconBoxProps = {
 
 export default function IconBox({ children, className, color }: IconBoxProps) {
     return <div className={cn(
-        "flex items-center justify-center rounded-md border border-border p-2 shadow-sm", 
+        "flex items-center justify-center rounded-md border-b border-border p-2 shadow-sm", 
         className, 
         color ? `text-${color} border-${color} shadow-${color}` : undefined
         )}>

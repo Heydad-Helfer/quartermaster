@@ -1,0 +1,106 @@
+@layer components {
+	.durability {
+		@apply flex min-w-28 w-full flex-col gap-1;
+	}
+
+	.durability__header {
+		@apply flex w-full items-baseline justify-between text-xs leading-none;
+	}
+
+	.durability__label {
+		@apply font-medium tabular-nums;
+	}
+
+	.durability__fraction {
+		@apply font-light tabular-nums text-muted-foreground;
+	}
+
+	.durability--mid .durability__fraction {
+		color: var(--durability-mid);
+	}
+
+	.durability--low .durability__fraction,
+	.durability--broken .durability__fraction {
+		color: var(--durability-low);
+	}
+
+	.durability--indestructible .durability__label {
+		color: var(--rarity-legendary);
+	}
+
+	.durability [data-slot="progress-track"] {
+		@apply h-1.5;
+	}
+
+	.durability [data-slot="progress-indicator"] {
+		@apply rounded-full;
+	}
+
+	.durability--high [data-slot="progress-indicator"] {
+		background: linear-gradient(
+			90deg,
+			color-mix(in oklch, var(--durability-high) 80%, black) 0%,
+			var(--durability-high) 45%,
+			color-mix(in oklch, var(--durability-high) 65%, white) 100%
+		);
+	}
+
+	.durability--mid [data-slot="progress-indicator"] {
+		background: linear-gradient(
+			90deg,
+			color-mix(in oklch, var(--durability-mid) 75%, black) 0%,
+			var(--durability-mid) 45%,
+			color-mix(in oklch, var(--durability-mid) 70%, white) 100%
+		);
+	}
+
+	.durability--low [data-slot="progress-indicator"] {
+		background: linear-gradient(
+			90deg,
+			color-mix(in oklch, var(--durability-low) 80%, black) 0%,
+			var(--durability-low) 45%,
+			color-mix(in oklch, var(--durability-low) 60%, white) 100%
+		);
+	}
+
+	.durability--broken [data-slot="progress-indicator"] {
+		background: linear-gradient(
+			90deg,
+			color-mix(in oklch, var(--durability-low) 90%, black) 0%,
+			var(--durability-low) 100%
+		);
+	}
+
+	.durability--indestructible [data-slot="progress-indicator"] {
+		background: linear-gradient(
+			105deg,
+			color-mix(in oklch, var(--rarity-legendary) 70%, black) 0%,
+			var(--rarity-legendary) 35%,
+			color-mix(in oklch, var(--rarity-legendary) 45%, white) 50%,
+			var(--rarity-legendary) 65%,
+			color-mix(in oklch, var(--rarity-legendary) 70%, black) 100%
+		);
+		background-size: 200% 100%;
+		animation: durability-shine 3s ease-in-out infinite;
+	}
+
+	.durability--single-use [data-slot="progress-indicator"] {
+		background: linear-gradient(
+			90deg,
+			color-mix(in oklch, var(--muted-foreground) 50%, transparent) 0%,
+			color-mix(in oklch, var(--muted-foreground) 75%, transparent) 50%,
+			color-mix(in oklch, var(--muted-foreground) 50%, transparent) 100%
+		);
+	}
+}
+
+@keyframes durability-shine {
+	0%,
+	100% {
+		background-position: 100% 0;
+	}
+
+	50% {
+		background-position: 0% 0;
+	}
+}
