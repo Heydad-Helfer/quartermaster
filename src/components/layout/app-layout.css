@@ -8,7 +8,7 @@
 	}
 
 	.app-shell__header-inner {
-		@apply mx-auto flex h-14 w-full max-w-[var(--container-max-width)] items-center gap-6 px-margin-mobile md:px-margin-desktop;
+		@apply mx-auto flex h-14 w-full max-w-(--container-max-width) items-center gap-6 px-margin-mobile md:px-margin-desktop;
 	}
 
 	.app-shell__brand {
@@ -37,6 +37,6 @@
 	}
 
 	.app-shell__content {
-		@apply mx-auto flex w-full max-w-[var(--container-max-width)] flex-1 flex-col overflow-auto px-margin-mobile py-6 md:px-margin-desktop;
+		@apply mx-auto flex w-full max-w-(--container-max-width) flex-1 flex-col overflow-auto px-margin-mobile py-6 md:px-margin-desktop;
 	}
 }
