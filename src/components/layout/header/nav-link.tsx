@@ -7,7 +7,7 @@ export function NavLink({ item }: { item: NavItem }) {
 	return (
 		<Link
 			to={item.path}
-			activeOptions={{ exact: item.path === "/" }}
+			activeOptions={{ exact: true }}
 			className="header-nav-link"
 		>
 			<Icon className="size-4" aria-hidden />

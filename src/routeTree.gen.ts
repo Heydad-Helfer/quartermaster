@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as InventoryRouteImport } from './routes/inventory'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as TradersRouteImport } from './routes/traders'
 import { Route as VaultRouteImport } from './routes/vault'
@@ -18,6 +19,11 @@ import { Route as WorkshopRouteImport } from './routes/workshop'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InventoryRoute = InventoryRouteImport.update({
+  id: '/inventory',
+  path: '/inventory',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SettingsRoute = SettingsRouteImport.update({
@@ -43,6 +49,7 @@ const WorkshopRoute = WorkshopRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/inventory': typeof InventoryRoute
   '/settings': typeof SettingsRoute
   '/traders': typeof TradersRoute
   '/vault': typeof VaultRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/inventory': typeof InventoryRoute
   '/settings': typeof SettingsRoute
   '/traders': typeof TradersRoute
   '/vault': typeof VaultRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/inventory': typeof InventoryRoute
   '/settings': typeof SettingsRoute
   '/traders': typeof TradersRoute
   '/vault': typeof VaultRoute
@@ -65,14 +74,23 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/settings' | '/traders' | '/vault' | '/workshop'
+  fullPaths:
+    '/' | '/inventory' | '/settings' | '/traders' | '/vault' | '/workshop'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/settings' | '/traders' | '/vault' | '/workshop'
-  id: '__root__' | '/' | '/settings' | '/traders' | '/vault' | '/workshop'
+  to: '/' | '/inventory' | '/settings' | '/traders' | '/vault' | '/workshop'
+  id:
+    | '__root__'
+    | '/'
+    | '/inventory'
+    | '/settings'
+    | '/traders'
+    | '/vault'
+    | '/workshop'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  InventoryRoute: typeof InventoryRoute
   SettingsRoute: typeof SettingsRoute
   TradersRoute: typeof TradersRoute
   VaultRoute: typeof VaultRoute
@@ -86,6 +104,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inventory': {
+      id: '/inventory'
+      path: '/inventory'
+      fullPath: '/inventory'
+      preLoaderRoute: typeof InventoryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/settings': {
@@ -121,6 +146,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  InventoryRoute: InventoryRoute,
   SettingsRoute: SettingsRoute,
   TradersRoute: TradersRoute,
   VaultRoute: VaultRoute,

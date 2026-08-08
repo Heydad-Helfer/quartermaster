@@ -1,21 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { getItemsCollection } from "#/collections/items";
-import InventoryTable from "#/components/inventory-table/InventoryTable";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
-	ssr: false,
-	pendingMs: 0,
-	pendingComponent: InventoryPending,
-	loader: async ({ context }) => {
-		await getItemsCollection(context.queryClient).preload();
+	beforeLoad: () => {
+		throw redirect({ to: "/inventory" });
 	},
-	component: InventoryPage,
 });
-
-function InventoryPending() {
-	return <p className="text-muted-foreground">Loading inventory…</p>;
-}
-
-function InventoryPage() {
-	return <InventoryTable />;
-}
