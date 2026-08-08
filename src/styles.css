@@ -5,7 +5,7 @@
 @import "@fontsource-variable/playfair-display";
 
 @import "./components/layout/app-layout.css";
-@import "./components/layout/sidebar/sidebar.css";
+@import "./components/layout/header/header.css";
 
 /* Dark-first: `.dark` forces dark, `.light` forces light. light-dark() follows color-scheme. */
 @custom-variant dark (&:where(.dark, .dark *));

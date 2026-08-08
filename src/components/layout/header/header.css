@@ -1,0 +1,12 @@
+@layer components {
+	.header-nav-link {
+		@apply inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors;
+		@apply hover:bg-muted hover:text-foreground;
+		@apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring;
+	}
+
+	.header-nav-link[data-status="active"] {
+		@apply bg-sidebar-primary text-sidebar-primary-foreground;
+		@apply hover:bg-sidebar-primary hover:text-sidebar-primary-foreground;
+	}
+}

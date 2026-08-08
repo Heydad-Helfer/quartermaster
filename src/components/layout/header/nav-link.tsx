@@ -8,10 +8,10 @@ export function NavLink({ item }: { item: NavItem }) {
 		<Link
 			to={item.path}
 			activeOptions={{ exact: item.path === "/" }}
-			className="sidebar-nav-link"
+			className="header-nav-link"
 		>
-			<Icon className="size-5" aria-hidden />
-			<span className="sidebar-nav-link__label">{item.name}</span>
+			<Icon className="size-4" aria-hidden />
+			<span>{item.name}</span>
 		</Link>
 	);
 }

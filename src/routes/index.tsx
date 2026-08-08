@@ -17,11 +17,5 @@ function InventoryPending() {
 }
 
 function InventoryPage() {
-	return (
-		<div className="flex">
-			<div className="flex-1">
-				<InventoryTable />
-			</div>
-		</div>
-	);
+	return <InventoryTable />;
 }
