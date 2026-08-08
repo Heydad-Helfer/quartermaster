@@ -6,7 +6,7 @@ import {
 	Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { AppLayout } from "@/components/layout";
+import { AppLayout, ErrorPage, NotFoundPage } from "@/components/layout";
 import {
 	THEME_STORAGE_KEY,
 	ThemeProvider,
@@ -46,6 +46,8 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 		],
 	}),
 	component: AppLayout,
+	notFoundComponent: NotFoundPage,
+	errorComponent: ErrorPage,
 	shellComponent: RootDocument,
 });
 

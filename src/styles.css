@@ -6,6 +6,7 @@
 
 @import "./components/layout/app-layout.css";
 @import "./components/layout/header/header.css";
+@import "./components/layout/status-page/status-page.css";
 @import "./components/inventory-table/cells/durability.css";
 
 /* Dark-first: `.dark` forces dark, `.light` forces light. light-dark() follows color-scheme. */

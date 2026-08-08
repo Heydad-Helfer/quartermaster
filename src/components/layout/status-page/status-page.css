@@ -1,0 +1,17 @@
+@layer components {
+	.status-page {
+		@apply flex flex-1 flex-col items-center justify-center gap-6 text-center;
+	}
+
+	.status-page__icon {
+		@apply flex size-12 items-center justify-center rounded-lg bg-surface-container-high shadow-edge;
+	}
+
+	.status-page__content {
+		@apply flex max-w-prose flex-col items-center gap-2;
+	}
+
+	.status-page__actions {
+		@apply flex flex-wrap items-center justify-center gap-2;
+	}
+}
