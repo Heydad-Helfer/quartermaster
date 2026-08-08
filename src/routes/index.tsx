@@ -1,6 +1,6 @@
-import { useLiveQuery } from "@tanstack/react-db";
 import { createFileRoute } from "@tanstack/react-router";
-import { getItemsCollection } from "#/collections/items/collection";
+import { getItemsCollection } from "#/collections/items";
+import InventoryTable from "#/components/inventory-table/InventoryTable";
 
 export const Route = createFileRoute("/")({
 	ssr: false,
@@ -17,23 +17,11 @@ function InventoryPending() {
 }
 
 function InventoryPage() {
-	const { queryClient } = Route.useRouteContext();
-	const itemsCollection = getItemsCollection(queryClient);
-	const { data: items, isLoading } = useLiveQuery((q) =>
-		q.from({ item: itemsCollection }),
-	);
-
-	if (isLoading) {
-		return <InventoryPending />;
-	}
-
 	return (
-		<div className="flex max-w-prose flex-col gap-2">
-			{items.map((item) => (
-				<div key={item.id}>
-					<h3>{item.name}</h3>
-				</div>
-			))}
+		<div className="flex">
+			<div className="flex-1">
+				<InventoryTable />
+			</div>
 		</div>
 	);
 }

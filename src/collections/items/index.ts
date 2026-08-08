@@ -3,3 +3,4 @@ export {
 	itemCollectionSchema,
 	type ItemCollectionItem,
 } from "./schema";
+export { useItems } from "./use-items";

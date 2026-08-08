@@ -25,22 +25,22 @@ type ItemCategoryMeta = {
 export const itemRarityMeta = {
 	common: {
 		label: "Common",
-		color: "var(--rarity-common)",
+		color: "rarity-common",
 		icon: Circle,
 	},
 	rare: {
 		label: "Rare",
-		color: "var(--rarity-rare)",
+		color: "rarity-rare",
 		icon: Gem,
 	},
 	epic: {
 		label: "Epic",
-		color: "var(--rarity-epic)",
+		color: "rarity-epic",
 		icon: Sparkles,
 	},
 	legendary: {
 		label: "Legendary",
-		color: "var(--rarity-legendary)",
+		color: "rarity-legendary",
 		icon: Crown,
 	},
 } as const satisfies Record<ItemRarity, ItemRarityMeta>;
