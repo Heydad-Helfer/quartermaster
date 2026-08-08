@@ -7,7 +7,7 @@ export default function ItemTitle({ item }: { item: InventoryItem }) {
     const itemCategoryDetails = itemCategoryMeta[item.category];
 
     return <div className="flex items-center gap-2">
-        <IconBox className="bg-surface-container" color={itemRarityDetails.color}>
+        <IconBox className="bg-surface-container" toneClass={itemRarityDetails.iconBoxClass}>
             <itemCategoryDetails.icon className="h-4 w-4" />
         </IconBox>
         <div className="flex flex-col">
