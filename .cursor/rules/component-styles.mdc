@@ -1,0 +1,36 @@
+---
+description: Custom @apply CSS for long Tailwind class lists; prefer canonical classes
+globs: src/components/**/*.{ts,tsx,css}
+alwaysApply: true
+---
+
+# Component styling
+
+## Long class lists → custom classes
+
+When a JSX element accumulates a long Tailwind class list (layout shell, chrome, multi-state controls), extract a meaningful custom class with `@apply`.
+
+- One CSS file **per section** (e.g. `sidebar/sidebar.css`, `app-layout.css`), colocated with that section.
+- Import each file **explicitly** in `src/styles.css` (do not rely on auto-discovery).
+- Use `@layer components` and BEM-ish names (`sidebar`, `sidebar__nav`, `sidebar-nav-link`).
+
+```css
+@layer components {
+  .app-shell {
+    @apply flex min-h-dvh bg-background text-foreground;
+  }
+}
+```
+
+**Exception:** Do **not** refactor or wrap styles for Shadcn-generated files under `src/components/ui/`.
+
+## Canonical Tailwind classes
+
+Prefer IntelliSense / Tailwind canonical forms over arbitrary equivalents:
+
+- `rounded-[var(--radius)]` → `rounded-lg` (theme maps `--radius-lg` to `--radius`)
+- `outline-none` → `outline-hidden` (Tailwind v4)
+- Use `size-*` when width and height match
+- Use `gap-*` instead of `space-x-*` / `space-y-*`
+
+Custom utilities that will be used with `@apply` must be registered with `@utility`, not plain `@layer utilities` class selectors.

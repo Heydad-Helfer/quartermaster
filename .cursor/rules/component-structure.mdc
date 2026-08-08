@@ -1,0 +1,21 @@
+---
+description: Split compound components into folders with one file per subcomponent
+globs: src/components/**/*.{ts,tsx}
+alwaysApply: true
+---
+
+# Component file structure
+
+When a component file defines a main component **and** one or more subcomponents, split them into a folder named after the parent.
+
+```
+components/layout/sidebar/
+  sidebar.tsx      # Sidebar
+  nav-link.tsx     # NavLink (internal)
+  index.ts         # public exports only
+```
+
+- One component per file.
+- Export public pieces from `index.ts`.
+- Do **not** export internals used only by the parent (e.g. `NavLink`).
+- Keep single, self-contained components as a single file (no forced folder).
