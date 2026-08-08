@@ -1,3 +1,9 @@
+/**
+ * Server-side Drizzle table schema (SQLite).
+ *
+ * Do not confuse with the TanStack DB collection schema in
+ * `src/collections/items/schema.ts`.
+ */
 import { integer, real, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import type { ItemCategory, ItemModifier, ItemRarity } from "#/types/item";
 import { itemCategorySchema, itemRaritySchema } from "#/types/item";

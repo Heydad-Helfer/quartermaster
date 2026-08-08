@@ -18,6 +18,7 @@ export const itemModifierSchema = z.object({
 });
 export type ItemModifier = z.infer<typeof itemModifierSchema>;
 
+/** Shared domain shape for an inventory item (used by app code). */
 export const inventoryItemSchema = z.object({
 	id: z.string().min(1),
 	name: z.string().min(1),

@@ -1,9 +1,8 @@
-// app/db/index.ts
-import Database from 'better-sqlite3';
-import { drizzle } from 'drizzle-orm/better-sqlite3';
-import * as schema from './schema';
+/** Server-side Drizzle client (SQLite). Not the TanStack DB collections layer. */
+import Database from "better-sqlite3";
+import { drizzle } from "drizzle-orm/better-sqlite3";
+import * as schema from "./schema";
 
-// This creates a local file named 'sqlite.db' in your project root automatically
-const sqlite = new Database('sqlite.db');
+const sqlite = new Database("sqlite.db");
 
 export const db = drizzle(sqlite, { schema });
