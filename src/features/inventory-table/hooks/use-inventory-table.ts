@@ -1,10 +1,10 @@
 import { useTable } from "@tanstack/react-table";
 import { useTanStackTableDevtools } from "@tanstack/react-table-devtools";
-import { useItems } from "#/collections/items";
+import type { InventoryItem } from "#/types/item";
 import { columns, features } from "../columns";
 
-export function useInventoryTable() {
-	const { data: items = [], isLoading } = useItems();
+export function useInventoryTable(items: InventoryItem[]) {
+	
 
 	const table = useTable({
 		key: "inventory-table",
@@ -20,7 +20,6 @@ export function useInventoryTable() {
         table,
         headerGroups: table.getHeaderGroups(),
         rows: table.getRowModel().rows,
-        isLoading,
         isEmpty: table.getRowModel().rows.length === 0,
     };
 }

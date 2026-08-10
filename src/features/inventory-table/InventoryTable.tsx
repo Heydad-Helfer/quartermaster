@@ -1,3 +1,4 @@
+import { useItems } from "#/collections/items";
 import {
 	Table,
 	TableBody,
@@ -12,9 +13,10 @@ import { useInventoryTable } from "./hooks/use-inventory-table";
 
 
 export default function InventoryTable() {
-	const { table, headerGroups, rows, isLoading, isEmpty } = useInventoryTable();
+	const itemsQuery = useItems();
+	const { table, headerGroups, rows, isEmpty } = useInventoryTable(itemsQuery.data ?? []);
 
-	if (isLoading) {
+	if (itemsQuery.isLoading) {
 		return <InventoryPending />;
 	}
 
