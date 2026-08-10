@@ -1,6 +1,3 @@
-import { useTable } from "@tanstack/react-table";
-import { useTanStackTableDevtools } from "@tanstack/react-table-devtools";
-import { useItems } from "#/collections/items";
 import {
 	Table,
 	TableBody,
@@ -9,27 +6,27 @@ import {
 	TableHeader,
 	TableRow,
 } from "#/components/ui/table";
-import { columns, features } from "./columns";
+import InventoryEmpty from "./components/inventory-empty";
+import InventoryPending from "./components/inventory-pending";
+import { useInventoryTable } from "./hooks/use-inventory-table";
 
 
 export default function InventoryTable() {
-	const { data: items = [] } = useItems();
+	const { table, headerGroups, rows, isLoading, isEmpty } = useInventoryTable();
 
-	const table = useTable({
-		key: "inventory-table",
-		// debugTable: true,
-		features,
-		columns,
-		data: items,
-	});
+	if (isLoading) {
+		return <InventoryPending />;
+	}
 
-	useTanStackTableDevtools(table);
+	if (isEmpty) {
+		return <InventoryEmpty />;
+	}
 
 	return (
 		<div className="overflow-hidden rounded-md border">
 			<Table>
-				<TableHeader>
-					{table.getHeaderGroups().map((headerGroup) => (
+				<TableHeader className="bg-surface-container">
+					{headerGroups.map((headerGroup) => (
 						<TableRow key={headerGroup.id}>
 							{headerGroup.headers.map((header) => (
 								<TableHead key={header.id}>
@@ -42,7 +39,7 @@ export default function InventoryTable() {
 					))}
 				</TableHeader>
 				<TableBody>
-					{table.getRowModel().rows.map((row) => (
+					{rows.map((row) => (
 						<TableRow key={row.id}>
 							{row.getAllCells().map((cell) => (
 								<TableCell key={cell.id}>
