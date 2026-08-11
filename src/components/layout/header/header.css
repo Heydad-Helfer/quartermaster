@@ -1,7 +1,7 @@
 /* Layout-level styles — primary header navigation. */
 @layer components {
 	.header-nav-link {
-		@apply inline-flex items-center gap-2 rounded-lg px-3.5 py-2 font-heading text-[0.75rem] font-bold tracking-[0.1em] uppercase text-muted-foreground transition-colors;
+		@apply inline-flex items-center gap-2 rounded-lg px-3.5 py-2 font-heading text-[0.75rem] font-bold tracking-widest uppercase text-muted-foreground transition-colors;
 		@apply hover:bg-surface-container hover:text-foreground;
 		@apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring;
 	}

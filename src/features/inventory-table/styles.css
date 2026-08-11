@@ -19,7 +19,7 @@
 	}
 
 	.inventory-table [data-slot="table-head"] {
-		@apply h-auto px-4 py-3.5 text-left align-middle font-heading text-[0.6875rem] font-bold tracking-[0.1em] uppercase text-muted-foreground;
+		@apply h-auto px-4 py-3.5 text-left align-middle font-heading text-[0.6875rem] font-bold tracking-widest uppercase text-muted-foreground;
 	}
 
 	.inventory-table [data-slot="table-cell"] {
