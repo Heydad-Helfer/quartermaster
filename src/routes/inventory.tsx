@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getItemsCollection } from "#/collections/items";
-import InventoryTable from "#/features/inventory-table/InventoryTable";
+import InventoryPage from "#/pages/inventory/InventoryPage";
 
 export const Route = createFileRoute("/inventory")({
 	ssr: false,
@@ -8,6 +8,5 @@ export const Route = createFileRoute("/inventory")({
 	loader: ({ context }) => {
 		void getItemsCollection(context.queryClient).preload();
 	},
-	component: InventoryTable
+	component: InventoryPage,
 });
-

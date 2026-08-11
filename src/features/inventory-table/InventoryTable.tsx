@@ -11,10 +11,11 @@ import InventoryEmpty from "./components/inventory-empty";
 import InventoryPending from "./components/inventory-pending";
 import { useInventoryTable } from "./hooks/use-inventory-table";
 
-
 export default function InventoryTable() {
 	const itemsQuery = useItems();
-	const { table, headerGroups, rows, isEmpty } = useInventoryTable(itemsQuery.data ?? []);
+	const { table, headerGroups, rows, isEmpty } = useInventoryTable(
+		itemsQuery.data ?? [],
+	);
 
 	if (itemsQuery.isLoading) {
 		return <InventoryPending />;
@@ -25,9 +26,9 @@ export default function InventoryTable() {
 	}
 
 	return (
-		<div className="overflow-hidden rounded-md border">
+		<div className="inventory-table">
 			<Table>
-				<TableHeader className="bg-surface-container">
+				<TableHeader>
 					{headerGroups.map((headerGroup) => (
 						<TableRow key={headerGroup.id}>
 							{headerGroup.headers.map((header) => (

@@ -15,7 +15,7 @@ export default function IconBox({
 	return (
 		<div
 			className={cn(
-				"flex items-center justify-center rounded-md border-b border-border p-2 shadow-sm",
+				"flex size-9 items-center justify-center rounded-lg bg-surface-container p-2 shadow-edge",
 				className,
 				toneClass,
 			)}

@@ -1,10 +1,11 @@
+/* Layout-level styles — app shell wrapping all routes. */
 @layer components {
 	.app-shell {
 		@apply flex min-h-dvh flex-col bg-background text-foreground;
 	}
 
 	.app-shell__header {
-		@apply shrink-0 border-b border-border;
+		@apply shrink-0 border-b border-outline-variant bg-surface;
 	}
 
 	.app-shell__header-inner {
@@ -17,11 +18,11 @@
 	}
 
 	.app-shell__logo {
-		@apply flex size-9 items-center justify-center rounded-lg bg-surface-container-high shadow-edge;
+		@apply flex size-9 items-center justify-center rounded-lg bg-surface-container-high text-primary shadow-edge;
 	}
 
 	.app-shell__title {
-		@apply font-heading text-lg font-bold tracking-tight md:text-xl;
+		@apply font-heading text-lg font-bold tracking-wide;
 	}
 
 	.app-shell__nav {
@@ -33,10 +34,10 @@
 	}
 
 	.app-shell__utilities a[data-status="active"] {
-		@apply border-sidebar-primary bg-sidebar-primary text-sidebar-primary-foreground hover:bg-sidebar-primary hover:text-sidebar-primary-foreground;
+		@apply border-primary bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground;
 	}
 
 	.app-shell__content {
-		@apply mx-auto flex w-full max-w-(--container-max-width) flex-1 flex-col overflow-auto px-margin-mobile py-6 md:px-margin-desktop;
+		@apply mx-auto flex w-full max-w-(--container-max-width) flex-1 flex-col overflow-auto px-margin-mobile py-6 md:px-margin-desktop md:pb-12;
 	}
 }

@@ -47,11 +47,11 @@ export const columns = columnHelper.columns([
     columnHelper.accessor("modifiers", {
         header: "Modifiers",
         cell: ({ row }) => (
-            <div>
+            <span className="text-muted-foreground">
                 {row.original.modifiers
                     .map((modifier) => `${modifier.stat} ${modifier.value}`)
                     .join(", ")}
-            </div>
+            </span>
         ),
     }),
 ]);

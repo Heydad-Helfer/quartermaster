@@ -29,7 +29,8 @@
 	}
 
 	.durability [data-slot="progress-track"] {
-		@apply h-1.5;
+		@apply h-2 rounded bg-surface-container-highest;
+		box-shadow: var(--inset-well);
 	}
 
 	.durability [data-slot="progress-indicator"] {

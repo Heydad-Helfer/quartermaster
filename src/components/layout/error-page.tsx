@@ -15,8 +15,7 @@ export function ErrorPage({ error }: ErrorComponentProps) {
 			label="Error"
 			title="Something went wrong"
 			description={
-				error.message ||
-				"An unexpected error occurred while loading this page."
+				error.message || "An unexpected error occurred while loading this page."
 			}
 			icon={<AlertTriangle className="size-6 text-destructive" />}
 			actions={
